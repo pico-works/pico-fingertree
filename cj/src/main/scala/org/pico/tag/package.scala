@@ -16,7 +16,7 @@ package object tag {
     def tagged[T]: F[V @@ T] = self.asInstanceOf[F[V @@ T]]
   }
 
-  implicit class UntaggedF2Ops[V, T, F[_, _], A](val self: F[A, V @@ T]) extends AnyVal {
+  implicit class UntaggedF2Ops[V, F[_, _], A](val self: F[A, V]) extends AnyVal {
     def tagged[T]: F[A, V @@ T] = self.asInstanceOf[F[A, V @@ T]]
   }
 }
