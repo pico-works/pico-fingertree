@@ -2,7 +2,7 @@ package fingertree
 
 import org.pico.collection.Measured
 
-import scalaz.Scalaz, Scalaz._
+import scalaz.Scalaz._
 
 trait Dv[V] {
   type a[A] = Digit[V, A]

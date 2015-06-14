@@ -1,7 +1,7 @@
 package fingertree
 
 import scala.language.higherKinds
-import scalaz._, Scalaz._, Tags._
+import scalaz._
 
 class Tagger[U] {
   def apply[T](t : T): T @@ U = t.asInstanceOf[T @@ U]

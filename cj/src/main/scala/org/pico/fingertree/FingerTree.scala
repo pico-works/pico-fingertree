@@ -3,8 +3,7 @@ package fingertree
 import org.pico.collection._
 import org.pico.syntax.all._
 
-import scalaz.Scalaz, Scalaz._
-import scalaz.Monoid
+import scalaz.Scalaz._
 
 trait Fv[V] {
   type a[+A] = FingerTree[V, A]

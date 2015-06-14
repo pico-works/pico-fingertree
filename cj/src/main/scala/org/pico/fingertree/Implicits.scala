@@ -1,10 +1,8 @@
 package fingertree
 
-import org.pico.collection.{Reduce, Snocable, Measured, Consable}
-import org.pico.syntax.all._
+import org.pico.collection.{Consable, Measured, Reduce, Snocable}
 
 import scalaz.Monoid
-import scalaz._, Scalaz._, Tags._
 
 trait Implicits {
   import org.pico.syntax.all._
