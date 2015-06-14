@@ -1,8 +1,7 @@
 package org.pico.syntax
 
-/**
- * Created by john on 15/06/15.
- */
-package object consable {
-
-}
+package object consable
+  extends ToConsableOps
+  with    ToMeasuredOps
+  with    ToReduceOps
+  with    ToSnocableOps

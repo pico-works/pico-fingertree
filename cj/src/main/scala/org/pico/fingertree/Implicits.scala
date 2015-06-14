@@ -1,13 +1,13 @@
 package fingertree
 
 import org.pico.collection.{Reduce, Snocable, Measured, Consable}
-import org.pico.syntax.consable.Syntax
+import org.pico.syntax.all._
 
 import scalaz.Monoid
 import scalaz._, Scalaz._, Tags._
 
 trait Implicits {
-  import Syntax._
+  import org.pico.syntax.all._
   
   implicit object ReduceSeq extends Reduce[Seq] {
     override def reduceR[A, B](f: (A, B) => B)(fa: Seq[A], z: B): B = fa.foldRight(z)(f)
@@ -20,7 +20,6 @@ trait Implicits {
   }
   
   implicit def ReduceFingerTree[V]: Reduce[Fv[V]#a] = new Reduce[Fv[V]#a] {
-    import Syntax._
     override def reduceR[A, B](f: (A, B) => B)(fa: FingerTree[V, A], z: B): B = {
       implicit val DConsable = Consable(ReduceDigit[V].reduceR(f))
       implicit val FConsable = Consable(ReduceFingerTree[V].reduceR(ReduceNode[V].reduceR(f)))
@@ -66,7 +65,6 @@ trait Implicits {
   }
 
   implicit def ReduceNode[V]: Reduce[Nv[V]#a] = new Reduce[Nv[V]#a] {
-    import Syntax._
     override def reduceR[A, B](f: (A, B) => B)(fa: Node[V, A], z: B): B = {
       implicit val BConsable = Consable(f)
       fa match {
@@ -107,8 +105,6 @@ trait Implicits {
   }
   
   implicit def MeasuredFingerTree[V, A](implicit MD: Measured[V, A]): Measured[V, FingerTree[V, A]] = new Measured[V, FingerTree[V, A]] {
-    import Syntax._
-
     override implicit def monoid: Monoid[V] = MD.monoid
 
     override def measure(tree: FingerTree[V, A]): V = tree match {

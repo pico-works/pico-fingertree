@@ -1,10 +1,9 @@
 package fingertree
 
 import org.pico.collection.Measured
-import org.pico.syntax.consable.Syntax
+import org.pico.syntax.all._
 
 import scalaz.Monoid
-import scalaz._, Scalaz._
 
 object Main {
   implicit object MeasuredSize extends Measured[Int, Char] {
@@ -17,7 +16,6 @@ object Main {
   }
 
   def main(args: Array[String]): Unit = {
-    import Syntax._
     import Implicits._
 
     val x: FingerTree[Int, Char] = Deep(D2('t', 'h'), Empty(), D3('r', 'e', 'e'))

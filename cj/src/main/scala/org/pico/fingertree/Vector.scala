@@ -1,11 +1,10 @@
 package fingertree
 
 import org.pico.collection.Measured
-import org.pico.syntax.consable.Syntax
+import org.pico.syntax.all._
+import org.pico.tag._
 
 import scalaz._
-import Syntax._
-import org.pico.tag._
 
 trait VectorImplicits extends Implicits {
   implicit object MonoidSize extends Monoid[Int] {

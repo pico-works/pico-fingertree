@@ -1,7 +1,7 @@
 package fingertree
 
 import org.pico.collection._
-import org.pico.syntax.consable.Syntax
+import org.pico.syntax.all._
 
 import scalaz.Scalaz, Scalaz._
 import scalaz.Monoid
@@ -14,8 +14,7 @@ trait FingerTree[V, +A] {
   type FV[+A] = FingerTree[V, A]
   type DV[+A] = Digit[V, A]
   type NV[+A] = Node[V, A]
-  
-  import Syntax._
+
   import Implicits._
   
   def +:[B >: A](x: B)(implicit M: Measured[V, B]): FingerTree[V, B] = (this: FingerTree[V, B]) match {
@@ -95,7 +94,6 @@ case class Deep[V, A](v: V, l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Dig
 
 object Deep {
   import Implicits._
-  import Syntax._
   
   def apply[V, A](l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Digit[V, A])(implicit M: Measured[V, A]): Deep[V, A] = {
     import M.monoid
@@ -105,7 +103,6 @@ object Deep {
 
 object FingerTree {
   import Implicits._
-  import Syntax._
 
   def deepL[V, A](l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Digit[V, A])(implicit M: Measured[V, A]): FingerTree[V, A] = l match {
     case D0() => m.viewL match {
@@ -125,7 +122,7 @@ object FingerTree {
   
   def append3[V, A](l: FingerTree[V, A], m: List[A], r: FingerTree[V, A])(implicit M: Measured[V, A]): FingerTree[V, A] = {
     import Implicits._
-    import Syntax._
+
     type DV[+A] = Digit[V, A]
     implicit val DConsable: Consable[List[A], FingerTree[V, A]] = Consable(ReduceList.reduceR(_ +: _))
     implicit val DSnocable: Snocable[FingerTree[V, A], List[A]] = Snocable(ReduceList.reduceL(_ :+ _))
