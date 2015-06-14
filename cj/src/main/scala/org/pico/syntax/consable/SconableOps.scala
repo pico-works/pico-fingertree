@@ -1,4 +1,6 @@
-package fingertree
+package org.pico.syntax.consable
+
+import org.pico.collection.Snocable
 
 import scalaz.syntax.Ops
 

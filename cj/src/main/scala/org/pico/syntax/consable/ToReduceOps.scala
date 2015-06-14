@@ -1,7 +1,8 @@
-package fingertree
+package org.pico.syntax.consable
 
-import scala.language.higherKinds
-import scala.language.implicitConversions
+import org.pico.collection.Reduce
+
+import scala.language.{higherKinds, implicitConversions}
 
 trait ToReduceOps {
   implicit def ToReduceOps[F[_], A](v: F[A])(implicit F0: Reduce[F]) = new ReduceOps[F, A] {

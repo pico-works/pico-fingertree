@@ -1,4 +1,4 @@
-package fingertree
+package org.pico.collection
 
 trait Consable[A, S] {
   def cons(a: A, sa: S): S

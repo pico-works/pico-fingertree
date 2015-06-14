@@ -1,5 +1,7 @@
 package fingertree
 
+import org.pico.collection.Measured
+
 import scalaz.Scalaz, Scalaz._
 
 trait Dv[V] {

@@ -1,5 +1,8 @@
 package fingertree
 
+import org.pico.collection._
+import org.pico.syntax.consable.Syntax
+
 import scalaz.Scalaz, Scalaz._
 import scalaz.Monoid
 

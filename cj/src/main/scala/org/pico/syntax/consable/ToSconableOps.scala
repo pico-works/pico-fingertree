@@ -1,4 +1,7 @@
-package fingertree
+package org.pico.syntax.consable
+
+import org.pico.collection.Snocable
+import org.pico.syntax.consable.SnocableOps
 
 import scala.language.implicitConversions
 

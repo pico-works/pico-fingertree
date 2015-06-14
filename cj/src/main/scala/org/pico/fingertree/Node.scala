@@ -1,5 +1,7 @@
 package fingertree
 
+import org.pico.collection.Measured
+
 trait Nv[V] {
   type a[+A] = Node[V, A]
 }

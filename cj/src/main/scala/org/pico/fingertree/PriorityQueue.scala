@@ -1,6 +1,8 @@
 package fingertree
 
-import fingertree.Syntax._
+import org.pico.collection.Measured
+import org.pico.syntax.consable.Syntax
+import Syntax._
 
 import scalaz.Scalaz._
 import scalaz._

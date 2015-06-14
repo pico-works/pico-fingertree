@@ -1,4 +1,4 @@
-package fingertree
+package org.pico.collection
 
 import scalaz.Monoid
 import scalaz.Scalaz._

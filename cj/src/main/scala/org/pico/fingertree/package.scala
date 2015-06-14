@@ -1,7 +1,10 @@
+import org.pico.collection.{Reduce, Measured}
+import org.pico.syntax.consable.Syntax
+
 import scala.language.higherKinds
 import scalaz.@@
 import scalaz.Tags._
-import fingertree.Syntax._
+import Syntax._
 
 package object fingertree {
   def !!!(): Nothing = throw new UnsupportedOperationException
