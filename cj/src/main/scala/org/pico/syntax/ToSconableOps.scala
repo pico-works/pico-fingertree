@@ -1,7 +1,6 @@
-package org.pico.syntax.consable
+package org.pico.syntax
 
 import org.pico.collection.Snocable
-import org.pico.syntax.consable.SnocableOps
 
 import scala.language.implicitConversions
 

@@ -1,4 +1,4 @@
-package org.pico.syntax.consable
+package org.pico.syntax
 
 import org.pico.collection.Snocable
 
