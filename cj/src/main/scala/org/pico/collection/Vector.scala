@@ -1,6 +1,7 @@
 package org.pico.collection
 
 import org.pico.collection.fingertree.{FingerTree, _}
+import org.pico.instances.std.seq._
 import org.pico.syntax.all._
 import org.pico.tag._
 
