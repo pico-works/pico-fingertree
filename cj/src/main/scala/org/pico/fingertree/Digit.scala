@@ -4,11 +4,7 @@ import org.pico.collection.Measured
 
 import scalaz.Scalaz._
 
-trait Dv[V] {
-  type a[A] = Digit[V, A]
-}
-
-trait Digit[V, +A] {
+sealed trait Digit[V, +A] {
   type DV[+A] = Digit[V, A]
 
   def +:[B >: A](x: B)(implicit M: Measured[V, B]): Digit[V, B] = this match {

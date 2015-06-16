@@ -5,11 +5,7 @@ import org.pico.syntax.all._
 
 import scalaz.Scalaz._
 
-trait Fv[V] {
-  type a[+A] = FingerTree[V, A]
-}
-
-trait FingerTree[V, +A] {
+sealed trait FingerTree[V, +A] {
   type FV[+A] = FingerTree[V, A]
   type DV[+A] = Digit[V, A]
   type NV[+A] = Node[V, A]
