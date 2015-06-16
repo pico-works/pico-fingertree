@@ -20,9 +20,9 @@ object JohnsFingerTree extends Build {
   lazy val cj = Project(id = "cj", base = file("cj"))
     .settings(commonSettings: _*)
     .settings(libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.1.2")
+    .settings(addCompilerPlugin("org.spire-math" % "kind-projector" % "0.6.0" cross CrossVersion.binary))
 
   lazy val root = Project(id = "livefx", base = file("."))
     .aggregate(cj)
     .settings(commonSettings: _*)
 }
-
