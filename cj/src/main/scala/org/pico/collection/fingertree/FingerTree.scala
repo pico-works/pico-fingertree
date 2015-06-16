@@ -1,6 +1,7 @@
 package org.pico.collection.fingertree
 
 import org.pico.collection._
+import org.pico.instances.std.list._
 import org.pico.syntax.all._
 
 import scalaz.Scalaz._
@@ -119,8 +120,8 @@ object FingerTree {
     import Implicits._
 
     type DV[+A] = Digit[V, A]
-    implicit val DConsable: Consable[List[A], FingerTree[V, A]] = Consable(ReduceList.reduceR(_ +: _))
-    implicit val DSnocable: Snocable[FingerTree[V, A], List[A]] = Snocable(ReduceList.reduceL(_ :+ _))
+    implicit val DConsable: Consable[List[A], FingerTree[V, A]] = Consable(implicitly[Reduce[List]].reduceR(_ +: _))
+    implicit val DSnocable: Snocable[FingerTree[V, A], List[A]] = Snocable(implicitly[Reduce[List]].reduceL(_ :+ _))
     (l, m, r) match {
       case (Empty(),             mm, rr                 ) => mm ++: rr
       case (ll,                  mm, Empty()            ) => ll :++ mm

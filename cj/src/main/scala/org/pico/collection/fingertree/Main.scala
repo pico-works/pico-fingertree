@@ -1,6 +1,7 @@
 package org.pico.collection.fingertree
 
 import org.pico.collection.Measured
+import org.pico.instances.std.list._
 import org.pico.syntax.all._
 
 import scalaz.Monoid

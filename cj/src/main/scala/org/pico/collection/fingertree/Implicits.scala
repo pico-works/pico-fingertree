@@ -6,11 +6,6 @@ import org.pico.syntax.all._
 import scalaz.Monoid
 
 trait Implicits {
-  implicit object ReduceList extends Reduce[List] {
-    override def reduceR[A, B](f: (A, B) => B)(fa: List[A], z: B): B = fa.foldRight(z)(f)
-    override def reduceL[A, B](f: (B, A) => B)(z: B, fa: List[A]): B = fa.foldLeft (z)(f)
-  }
-  
   implicit def ReduceFingerTree[V]: Reduce[Fv[V]#a] = new Reduce[Fv[V]#a] {
     override def reduceR[A, B](f: (A, B) => B)(fa: FingerTree[V, A], z: B): B = {
       implicit val DConsable = Consable(ReduceDigit[V].reduceR(f))
