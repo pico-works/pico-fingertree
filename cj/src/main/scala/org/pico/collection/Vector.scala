@@ -1,6 +1,6 @@
-package org.pico.collection.fingertree
+package org.pico.collection
 
-import org.pico.collection.Measured
+import org.pico.collection.fingertree.{FingerTree, _}
 import org.pico.syntax.all._
 import org.pico.tag._
 
