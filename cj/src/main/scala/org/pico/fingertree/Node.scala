@@ -2,11 +2,7 @@ package org.pico.fingertree
 
 import org.pico.collection.Measured
 
-trait Nv[V] {
-  type a[+A] = Node[V, A]
-}
-
-trait Node[V, +A] {
+sealed trait Node[V, +A] {
   def toDigit: Digit[V, A] = this match {
     case N2(v, a, b   ) => D2(v, a, b   )
     case N3(v, a, b, c) => D3(v, a, b, c)
