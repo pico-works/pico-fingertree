@@ -1,3 +1,3 @@
-package fingertree
+package org.pico.fingertree
 
 trait Elem

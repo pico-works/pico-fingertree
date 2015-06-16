@@ -1,3 +1,5 @@
+package org.pico
+
 import org.pico.collection.{Measured, Reduce}
 import org.pico.syntax.all._
 

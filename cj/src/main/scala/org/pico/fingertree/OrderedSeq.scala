@@ -1,4 +1,4 @@
-package fingertree
+package org.pico.fingertree
 
 import org.pico.collection.Measured
 import org.pico.tag._

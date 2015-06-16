@@ -1,7 +1,7 @@
 package org.pico.syntax
 
-import fingertree.{Empty, FingerTree}
 import org.pico.collection.{Measured, Reduce}
+import org.pico.fingertree.{Empty, FingerTree}
 
 import scala.language.higherKinds
 import scalaz.syntax.Ops
