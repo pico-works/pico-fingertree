@@ -1,4 +1,4 @@
-package org.pico.fingertree
+package org.pico.collection.fingertree
 
 import org.pico.collection._
 import org.pico.syntax.all._

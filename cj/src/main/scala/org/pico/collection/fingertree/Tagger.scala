@@ -1,4 +1,4 @@
-package org.pico.fingertree
+package org.pico.collection.fingertree
 
 import scala.language.higherKinds
 import scalaz._

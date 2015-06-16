@@ -1,4 +1,4 @@
-package org.pico.fingertree
+package org.pico.collection.fingertree
 
 import org.pico.collection.{Consable, Measured, Reduce, Snocable}
 

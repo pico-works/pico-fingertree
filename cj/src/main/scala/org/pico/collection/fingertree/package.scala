@@ -1,6 +1,5 @@
-package org.pico
+package org.pico.collection
 
-import org.pico.collection.{Measured, Reduce}
 import org.pico.syntax.all._
 
 import scala.language.higherKinds

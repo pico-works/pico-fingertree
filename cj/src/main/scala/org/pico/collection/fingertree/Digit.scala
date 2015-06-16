@@ -1,4 +1,4 @@
-package org.pico.fingertree
+package org.pico.collection.fingertree
 
 import org.pico.collection.Measured
 
@@ -8,23 +8,25 @@ sealed trait Digit[V, +A] {
   type DV[+A] = Digit[V, A]
 
   def +:[B >: A](x: B)(implicit M: Measured[V, B]): Digit[V, B] = this match {
-    case D1(v, a         ) => D2(x, a      )
-    case D2(v, a, b      ) => D3(x, a, b   )
-    case D3(v, a, b, c   ) => D4(x, a, b, c)
-    case D4(v, a, b, c, d) => !!!
+    case D0(              ) => !!!
+    case D1(v, a          ) => D2(x, a      )
+    case D2(v, a, b       ) => D3(x, a, b   )
+    case D3(v, a, b, c    ) => D4(x, a, b, c)
+    case D4(v, a, b, c, d ) => !!!
   }
   def :+[B >: A](x: B)(implicit M: Measured[V, B]): Digit[V, B] = this match {
-    case D1(v, a         ) => D2(a,       x)
-    case D2(v, a, b      ) => D3(a, b,    x)
-    case D3(v, a, b, c   ) => D4(a, b, c, x)
-    case D4(v, a, b, c, d) => !!!
+    case D0(              ) => !!!
+    case D1(v, a          ) => D2(a,       x)
+    case D2(v, a, b       ) => D3(a, b,    x)
+    case D3(v, a, b, c    ) => D4(a, b, c, x)
+    case D4(v, a, b, c, d ) => !!!
   }
   def headL: A = this match {
-    case D0(             ) => !!!
-    case D1(v, a         ) => a
-    case D2(v, a, _      ) => a
-    case D3(v, a, _, _   ) => a
-    case D4(v, a, _, _, _) => a
+    case D0(              ) => !!!
+    case D1(v, a          ) => a
+    case D2(v, a, _       ) => a
+    case D3(v, a, _, _    ) => a
+    case D4(v, a, _, _, _ ) => a
   }
   def tailL(implicit M: Measured[V, A]): Digit[V, A] = this match {
     case D0(             ) => !!!
