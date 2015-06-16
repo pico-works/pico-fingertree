@@ -1,6 +1,6 @@
 package org.pico.collection
 
-import org.pico.collection.fingertree.{Elem, FingerTree}
+import org.pico.collection.fingertree.{Elem, FingerTree, Implicits}
 import org.pico.tag._
 
 import scalaz.{@@, Monoid, Order, Tag}

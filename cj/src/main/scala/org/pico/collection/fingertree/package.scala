@@ -1,6 +1,7 @@
 package org.pico.collection
 
 import org.pico.syntax.all._
+import org.pico.tag.{TaggerF, Tagger}
 
 import scala.language.higherKinds
 import scalaz.@@
