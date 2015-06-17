@@ -1,11 +1,12 @@
-package org.pico.collection.fingertree
+package org.pico.instances.collection
 
+import org.pico.collection.fingertree._
 import org.pico.collection.{Consable, Measured, Reduce, Snocable}
 import org.pico.syntax.all._
 
 import scalaz.Monoid
 
-trait Implicits {
+package object fingertree {
   implicit def ReduceFingerTree[V]: Reduce[Fv[V]#a] = new Reduce[Fv[V]#a] {
     override def reduceR[A, B](f: (A, B) => B)(fa: FingerTree[V, A], z: B): B = {
       implicit val DConsable = Consable(ReduceDigit[V].reduceR(f))
@@ -38,7 +39,7 @@ trait Implicits {
         case D4(v, a, b, c, d) => a +: b +: c +: d +: z
       }
     }
-    
+
     override def reduceL[A, B](f: (B, A) => B)(z: B, fa: Digit[V, A]): B = {
       implicit val BSnocable = Snocable(f)
       fa match {
@@ -77,7 +78,7 @@ trait Implicits {
       case N3(v, _, _, _) => v
     }
   }
-  
+
   implicit def MeasuredDigit[V, A](implicit M: Measured[V, A]): Measured[V, Digit[V, A]] = new Measured[V, Digit[V, A]] {
     override implicit def monoid: Monoid[V] = M.monoid
 
@@ -89,7 +90,7 @@ trait Implicits {
       case D4(v, _, _, _, _) => v
     }
   }
-  
+
   implicit def MeasuredFingerTree[V, A](implicit MD: Measured[V, A]): Measured[V, FingerTree[V, A]] = new Measured[V, FingerTree[V, A]] {
     override implicit def monoid: Monoid[V] = MD.monoid
 
@@ -100,5 +101,3 @@ trait Implicits {
     }
   }
 }
-
-object Implicits extends Implicits

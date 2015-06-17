@@ -1,6 +1,7 @@
 package org.pico.collection.fingertree
 
 import org.pico.collection._
+import org.pico.instances.collection.fingertree._
 import org.pico.instances.std.list._
 import org.pico.syntax.all._
 
@@ -11,8 +12,6 @@ sealed trait FingerTree[V, +A] {
   type DV[+A] = Digit[V, A]
   type NV[+A] = Node[V, A]
 
-  import Implicits._
-  
   def +:[B >: A](x: B)(implicit M: Measured[V, B]): FingerTree[V, B] = (this: FingerTree[V, B]) match {
     case Empty()                          => Single(M.measure(x), x)
     case Single(v, y)                     => Deep(D1(x   ), Empty()         , D1(y))
@@ -89,8 +88,6 @@ case class Single[V, +A](v: V, a: A) extends FingerTree[V, A]
 case class Deep[V, A](v: V, l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Digit[V, A]) extends FingerTree[V, A]
 
 object Deep {
-  import Implicits._
-  
   def apply[V, A](l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Digit[V, A])(implicit M: Measured[V, A]): Deep[V, A] = {
     import M.monoid
     Deep(ToMeasuredOps(l).measure |+| ToMeasuredOps(m).measure |+| ToMeasuredOps(r).measure, l, m, r)
@@ -98,8 +95,6 @@ object Deep {
 }
 
 object FingerTree {
-  import Implicits._
-
   def deepL[V, A](l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Digit[V, A])(implicit M: Measured[V, A]): FingerTree[V, A] = l match {
     case D0() => m.viewL match {
       case EmptyL => ToReduceOps[Dv[V]#a, A](r).asTree
@@ -117,8 +112,6 @@ object FingerTree {
   }
   
   def append3[V, A](l: FingerTree[V, A], m: List[A], r: FingerTree[V, A])(implicit M: Measured[V, A]): FingerTree[V, A] = {
-    import Implicits._
-
     type DV[+A] = Digit[V, A]
     implicit val DConsable: Consable[List[A], FingerTree[V, A]] = Consable(implicitly[Reduce[List]].reduceR(_ +: _))
     implicit val DSnocable: Snocable[FingerTree[V, A], List[A]] = Snocable(implicitly[Reduce[List]].reduceL(_ :+ _))

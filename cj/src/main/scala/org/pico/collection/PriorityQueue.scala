@@ -1,6 +1,7 @@
 package org.pico.collection
 
-import org.pico.collection.fingertree.{Implicits, Elem, FingerTree, Split}
+import org.pico.collection.fingertree.{Elem, FingerTree, Split}
+import org.pico.instances.collection.fingertree._
 import org.pico.syntax.all._
 
 import scalaz.Scalaz._
@@ -10,7 +11,7 @@ sealed trait Priority[+A]
 case object MinusInfinity extends Priority[Nothing]
 case class SomePriority[+A](value: A) extends Priority[A]
 
-trait PriorityQueueImplicits extends Implicits {
+trait PriorityQueueImplicits {
   implicit def PriorityOrder[A: Order](): Order[Priority[A]] = new Order[Priority[A]] {
     override def order(l: Priority[A], r: Priority[A]): Ordering = (l, r) match {
       case (MinusInfinity, MinusInfinity)       => Ordering.EQ

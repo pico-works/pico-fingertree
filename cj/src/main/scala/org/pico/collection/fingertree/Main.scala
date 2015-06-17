@@ -1,6 +1,7 @@
 package org.pico.collection.fingertree
 
 import org.pico.collection.Measured
+import org.pico.instances.collection.fingertree._
 import org.pico.instances.std.list._
 import org.pico.syntax.all._
 
@@ -17,8 +18,6 @@ object Main {
   }
 
   def main(args: Array[String]): Unit = {
-    import Implicits._
-
     val x: FingerTree[Int, Char] = Deep(D2('t', 'h'), Empty(), D3('r', 'e', 'e'))
     val y: FingerTree[Int, Char] = {
         Deep(

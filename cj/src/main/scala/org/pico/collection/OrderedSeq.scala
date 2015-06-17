@@ -1,6 +1,6 @@
 package org.pico.collection
 
-import org.pico.collection.fingertree.{Elem, FingerTree, Implicits}
+import org.pico.collection.fingertree.{Elem, FingerTree}
 import org.pico.tag._
 
 import scalaz.{@@, Monoid, Order, Tag}
@@ -9,7 +9,7 @@ trait Key[+K]
 case object NoKey extends Key[Nothing]
 case class SomeKey[K](key: K) extends Key[K]
 
-trait OrderedSeqImplicits extends Implicits {
+trait OrderedSeqImplicits {
   implicit def KeyMonoid[A: Order](): Monoid[Key[A]] = new Monoid[Key[A]] {
     override def zero: Key[A] = NoKey
 

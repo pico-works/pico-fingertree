@@ -1,13 +1,14 @@
 package org.pico.collection
 
 import org.pico.collection.fingertree.{FingerTree, _}
+import org.pico.instances.collection.fingertree._
 import org.pico.instances.std.seq._
 import org.pico.syntax.all._
 import org.pico.tag._
 
 import scalaz._
 
-trait VectorImplicits extends Implicits {
+trait VectorImplicits {
   implicit object MonoidSize extends Monoid[Int] {
     override def zero: Int = 0
     override def append(a: Int, b: => Int) = a + b
