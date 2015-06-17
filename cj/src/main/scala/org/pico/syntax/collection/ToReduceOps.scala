@@ -1,4 +1,4 @@
-package org.pico.syntax
+package org.pico.syntax.collection
 
 import org.pico.collection.Reduce
 
