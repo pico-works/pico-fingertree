@@ -3,7 +3,7 @@ package org.pico.collection.fingertree
 import org.pico.collection._
 import org.pico.instances.collection.fingertree._
 import org.pico.instances.std.list._
-import org.pico.kind.λab
+import org.pico.kind.λxb
 import org.pico.syntax.all._
 
 import scalaz.Scalaz._
@@ -98,7 +98,7 @@ object Deep {
 object FingerTree {
   def deepL[V, A](l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Digit[V, A])(implicit M: Measured[V, A]): FingerTree[V, A] = l match {
     case D0() => m.viewL match {
-      case EmptyL => ToReduceOps[λab[Digit, V]#b, A](r).asTree
+      case EmptyL => ToReduceOps[λxb[Digit, V]#b, A](r).asTree
       case ConsL(lHead, lTail) => Deep(lHead.toDigit, lTail, r)
     }
     case _ => Deep(l, m, r)
@@ -106,7 +106,7 @@ object FingerTree {
   
   def deepR[V, A](l: Digit[V, A], m: FingerTree[V, Node[V, A]], r: Digit[V, A])(implicit M: Measured[V, A]): FingerTree[V, A] = r match {
     case D0() => m.viewR match {
-      case EmptyR => ToReduceOps[λab[Digit, V]#b, A](l).asTree
+      case EmptyR => ToReduceOps[λxb[Digit, V]#b, A](l).asTree
       case ConsR(rTail, rHead) => Deep(l, rTail, rHead.toDigit)
     }
     case _ => Deep(l, m, r)
