@@ -1,5 +1,6 @@
 package org.pico.collection
 
+import org.pico.kind.λab
 import org.pico.syntax.all._
 import org.pico.tag.{TaggerF, Tagger}
 
@@ -13,7 +14,7 @@ package object fingertree {
   
   def asTree[F[_], V, A](fa: F[A])(implicit F: Reduce[F], M: Measured[V, A]): FingerTree[V, A] = F.reduceR[A, FingerTree[V, A]](_ +: _)(fa, Empty())
 
-  def asList[V, A](digit: Digit[V, A])(implicit F0: Reduce[Dv[V]#a]): List[A] = {
+  def asList[V, A](digit: Digit[V, A])(implicit F0: Reduce[λab[Digit, V]#b]): List[A] = {
     type FV[+A] = FingerTree[V, A]
     type DV[+A] = Digit[V, A]
     type NV[+A] = Node[V, A]

@@ -2,6 +2,7 @@ package org.pico.instances.collection
 
 import org.pico.collection.fingertree._
 import org.pico.collection.{Consable, Measured, Reduce, Snocable}
+import org.pico.kind.λab
 import org.pico.syntax.all._
 
 import scalaz.Monoid
@@ -28,7 +29,7 @@ package object fingertree {
     }
   }
 
-  implicit def ReduceDigit[V]: Reduce[Dv[V]#a] = new Reduce[Dv[V]#a] {
+  implicit def ReduceDigit[V]: Reduce[λab[Digit, V]#b] = new Reduce[λab[Digit, V]#b] {
     override def reduceR[A, B](f: (A, B) => B)(fa: Digit[V, A], z: B): B = {
       implicit val BConsable = Consable(f)
       fa match {
