@@ -2,7 +2,7 @@ package org.pico.collection
 
 import scala.language.higherKinds
 
-trait ViewL[+S[+_], +A]
+sealed trait ViewL[+S[+_], +A]
 
 case object EmptyL extends ViewL[Nothing, Nothing]
 

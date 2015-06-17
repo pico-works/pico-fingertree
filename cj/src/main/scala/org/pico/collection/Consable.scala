@@ -1,6 +1,6 @@
 package org.pico.collection
 
-trait Consable[A, S] {
+sealed trait Consable[A, S] {
   def cons(a: A, sa: S): S
 }
 

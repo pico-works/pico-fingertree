@@ -1,6 +1,6 @@
 package org.pico.collection
 
-trait Snocable[S, A] {
+sealed trait Snocable[S, A] {
   def snoc(sa: S, a: A): S
 }
 

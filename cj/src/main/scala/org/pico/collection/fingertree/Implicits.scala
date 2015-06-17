@@ -60,9 +60,8 @@ trait Implicits {
       }
     }
     override def reduceL[A, B](f: (B, A) => B)(z: B, fa: Node[V, A]): B = {
-      implicit val BSnocable = new Snocable[B, A] {
-        override def snoc(sa: B, a: A): B = f(sa, a)
-      }
+      implicit val BSnocable = Snocable[B, A]((sa: B, a: A) => f(sa, a))
+
       fa match {
         case N2(v, a, b      ) => z :+ a :+ b
         case N3(v, a, b, c   ) => z :+ a :+ b :+ c
