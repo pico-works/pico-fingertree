@@ -39,8 +39,10 @@ object Multibuild extends Build with Version {
   lazy val `pico-fingertree` = Project(id = "pico-fingertree", base = file("pico-fingertree"))
     .standard
     .published
-    .settings(libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.1.2")
-    .settings(addCompilerPlugin("org.spire-math" % "kind-projector" % "0.6.0" cross CrossVersion.binary))
+    .settings(libraryDependencies ++= Seq(
+      "org.scalaz" %% "scalaz-core" % "7.1.2",
+      "io.john-ky" %% "pico-kind"   % "0.0.1-66ce0d8"))
+    
 
   lazy val root = Project(id = "all", base = file("."))
     .notPublished
