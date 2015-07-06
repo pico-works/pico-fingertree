@@ -11,7 +11,6 @@ import scalaz.Scalaz._
 sealed trait FingerTree[V, +A] {
   type FV[+A] = FingerTree[V, A]
   type DV[+A] = Digit[V, A]
-  type NV[+A] = Node[V, A]
 
   def +:[B >: A](x: B)(implicit M: Measured[V, B]): FingerTree[V, B] = (this: FingerTree[V, B]) match {
     case Empty()                          => Single(M.measure(x), x)
