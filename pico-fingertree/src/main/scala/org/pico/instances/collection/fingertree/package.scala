@@ -8,7 +8,7 @@ import org.pico.syntax.all._
 import scalaz.Monoid
 
 package object fingertree {
-  implicit def ReduceFingerTree[V]: Reduce[Fv[V]#a] = new Reduce[Fv[V]#a] {
+  implicit def ReduceFingerTree[V]: Reduce[λxb[FingerTree, V]#b] = new Reduce[λxb[FingerTree, V]#b] {
     override def reduceR[A, B](f: (A, B) => B)(fa: FingerTree[V, A], z: B): B = {
       implicit val DConsable = Consable(ReduceDigit[V].reduceR(f))
       implicit val FConsable = Consable(ReduceFingerTree[V].reduceR(ReduceNode[V].reduceR(f)))
@@ -18,6 +18,7 @@ package object fingertree {
         case Deep(_, l, m: FingerTree[V, Node[V, A]], r) => l +: m +: r +: z
       }
     }
+
     override def reduceL[A, B](f: (B, A) => B)(z: B, fa: FingerTree[V, A]): B =  {
       implicit val DSnocable = Snocable(ReduceDigit[V].reduceL(f))
       implicit val FSnocable = Snocable(ReduceFingerTree[V].reduceL(ReduceNode[V].reduceL(f)))
