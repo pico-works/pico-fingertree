@@ -5,8 +5,9 @@ import org.pico.collection.Snocable
 import scala.language.implicitConversions
 
 trait ToSnocableOps {
-  implicit def ToSnocableOps[S, A](v: S)(implicit F0: Snocable[S, A]) = new SnocableOps[S, A] {
-    def self = v
-    implicit def F: Snocable[S, A] = F0
+  implicit class SnocableForIdOps[S](self: S) {
+    def :+[A](a: A)(implicit snocable: Snocable[S, A]): S = snocable.snoc(self, a)
+
+    def :++[A](a: A)(implicit snocable: Snocable[S, A]): S = snocable.snoc(self, a)
   }
 }

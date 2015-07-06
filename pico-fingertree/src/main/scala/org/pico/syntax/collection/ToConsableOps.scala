@@ -5,8 +5,9 @@ import org.pico.collection.Consable
 import scala.language.implicitConversions
 
 trait ToConsableOps {
-  implicit def ToConsableOps[A, S](v: S)(implicit F0: Consable[A, S]) = new ConsableOps[A, S] {
-    def self = v
-    implicit def F: Consable[A, S] = F0
+  implicit class ConstableForIdOps[S](self: S) {
+    def +:[A](a: A)(implicit consable: Consable[A, S]): S = consable.cons(a, self)
+
+    def ++:[A](a: A)(implicit consable: Consable[A, S]): S = consable.cons(a, self)
   }
 }

@@ -31,7 +31,7 @@ package object fingertree {
 
   implicit def ReduceDigit[V]: Reduce[λxb[Digit, V]#b] = new Reduce[λxb[Digit, V]#b] {
     override def reduceR[A, B](f: (A, B) => B)(fa: Digit[V, A], z: B): B = {
-      implicit val BConsable = Consable(f)
+      implicit val BConsable: Consable[A, B] = Consable(f)
       fa match {
         case D0(             ) =>                     z
         case D1(v, a         ) =>                a +: z
