@@ -54,7 +54,7 @@ package object fingertree {
     }
   }
 
-  implicit def ReduceNode[V]: Reduce[Nv[V]#a] = new Reduce[Nv[V]#a] {
+  implicit def ReduceNode[V]: Reduce[λxb[Node, V]#b] = new Reduce[λxb[Node, V]#b] {
     override def reduceR[A, B](f: (A, B) => B)(fa: Node[V, A], z: B): B = {
       implicit val BConsable = Consable(f)
       fa match {
@@ -62,6 +62,7 @@ package object fingertree {
         case N3(v, a, b, c   ) => a +: b +: c +: z
       }
     }
+
     override def reduceL[A, B](f: (B, A) => B)(z: B, fa: Node[V, A]): B = {
       implicit val BSnocable = Snocable[B, A]((sa: B, a: A) => f(sa, a))
 
