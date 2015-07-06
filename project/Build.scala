@@ -41,7 +41,7 @@ object Multibuild extends Build with Version {
     .published
     .settings(libraryDependencies ++= Seq(
       "org.scalaz" %% "scalaz-core" % "7.1.2",
-      "io.john-ky" %% "pico-kind"   % "0.0.1-66ce0d8"))
+      "io.john-ky" %% "pico-kind"   % "0.0.1-dd87cb4"))
     
 
   lazy val root = Project(id = "all", base = file("."))
