@@ -1,11 +1,12 @@
 package org.pico.collection.fingertree
 
 import org.pico.collection.Measured
+import org.pico.kind.λxb
 
 import scalaz.Scalaz._
 
 sealed trait Digit[V, +A] {
-  type DV[+A] = Digit[V, A]
+  type DV[+A] = λxb[Digit, V]#b[A]
 
   def +:[B >: A](x: B)(implicit M: Measured[V, B]): Digit[V, B] = this match {
     case D0(              ) => !!!
