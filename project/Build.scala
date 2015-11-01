@@ -25,8 +25,8 @@ object Multibuild extends Build with Version {
 
     def published: Project = {
       self
-          .settings(publishTo in ThisBuild := Some("Scalap Releases" at "s3://dl.john-ky.io/maven/snapshots"))
-          .settings(isSnapshot in ThisBuild  := true)
+          .settings(publishTo := Some("Scalap Releases" at "s3://dl.john-ky.io/maven/releases"))
+          .settings(isSnapshot := true)
     }
 
     def dependsOnAndAggregates(projects: Project*): Project = {
