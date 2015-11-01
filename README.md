@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/newhoggy/pico-kind.svg?branch=master)](https://travis-ci.org/newhoggy/pico-kind)
+[![Circle CI](https://circleci.com/gh/newhoggy/pico-fingertree.svg?style=svg)](https://circleci.com/gh/newhoggy/pico-fingertree)
 
 Basic support for kind projections.
 
