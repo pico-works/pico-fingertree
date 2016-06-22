@@ -1,7 +1,7 @@
 import sbt._
 import Keys._
 
-object Multibuild extends Build with Version {
+object Build extends sbt.Build with Version {
   implicit class ProjectOps(self: Project) {
     def standard: Project = {
       self
@@ -28,23 +28,20 @@ object Multibuild extends Build with Version {
           .settings(publishTo := Some("Scalap Releases" at "s3://dl.john-ky.io/maven/releases"))
           .settings(isSnapshot := true)
     }
-
-    def dependsOnAndAggregates(projects: Project*): Project = {
-      val dependencies = projects.map(pr => pr: sbt.ClasspathDep[sbt.ProjectReference])
-      val aggregates = projects.map(pr => pr: sbt.ProjectReference)
-      self.dependsOn(dependencies: _*).aggregate(aggregates: _*)
-    }
   }
   
+  lazy val `pico-fake` = Project(id = "pico-fake", base = file("pico-fake"))
+      .standard("Fake project").notPublished
+      .testLibs(specs2_core)
+
   lazy val `pico-fingertree` = Project(id = "pico-fingertree", base = file("pico-fingertree"))
     .standard
     .published
     .settings(libraryDependencies ++= Seq(
       "org.scalaz" %% "scalaz-core" % "7.1.2",
       "io.john-ky" %% "pico-kind"   % "0.0.1-dd87cb4"))
-    
 
   lazy val root = Project(id = "all", base = file("."))
     .notPublished
-    .aggregate(`pico-fingertree`)
+    .aggregate(`pico-fingertree`, `pico-fake`)
 }
