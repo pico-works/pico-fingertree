@@ -9,11 +9,14 @@ dependencies:
 
   pre:
     - scripts/check-env-variables.sh
-    - scripts/get-credentials.sh
+    - git fetch --unshallow || true
+
+  override:
+    - sbt +test:compile +package
 
   post:
     - find ~/.sbt -name "*.lock" | xargs rm
-    - find ~/.ivy2 -name "ivydata-*.properties" | xargs rm
+    - find ~/.ivy2 -name "ivydata-*.properties" | sed 's/ /\\ /g' | sed 's/)/\\)/g' | xargs rm
 
 test:
   override:
@@ -26,7 +29,19 @@ test:
     - bash <(curl -s https://codecov.io/bash)
 
 deployment:
-  master:
-    branch: master
+  release:
+    owner: pico-works
+    tag: /v.*/
+    commands:
+      - sbt +publish
+
+  integration:
+    owner: pico-works
+    branch: [develop, master]
+    commands:
+      - sbt +publish
+
+  development:
+    branch: /PR-.*/
     commands:
       - sbt +publish
