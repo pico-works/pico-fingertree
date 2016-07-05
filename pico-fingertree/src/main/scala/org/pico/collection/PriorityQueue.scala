@@ -1,11 +1,10 @@
 package org.pico.collection
 
 import org.pico.collection.fingertree.{Elem, FingerTree, Split}
+import org.pico.fp._
 import org.pico.instances.collection.fingertree._
 import org.pico.syntax.all._
-
-import scalaz.Scalaz._
-import scalaz._
+import org.pico.fp.syntax._
 
 sealed trait Priority[+A]
 case object MinusInfinity extends Priority[Nothing]
@@ -14,9 +13,9 @@ case class SomePriority[+A](value: A) extends Priority[A]
 trait PriorityQueueImplicits {
   implicit def PriorityOrder[A: Order](): Order[Priority[A]] = new Order[Priority[A]] {
     override def order(l: Priority[A], r: Priority[A]): Ordering = (l, r) match {
-      case (MinusInfinity, MinusInfinity)       => Ordering.EQ
-      case (_, MinusInfinity)                   => Ordering.GT
-      case (MinusInfinity, _r)                  => Ordering.LT
+      case (MinusInfinity, MinusInfinity)       => EQ
+      case (_, MinusInfinity)                   => GT
+      case (MinusInfinity, _r)                  => LT
       case (SomePriority(lp), SomePriority(rp)) => Order[A].order(lp, rp)
     }
   }

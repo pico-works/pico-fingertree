@@ -2,13 +2,11 @@ package org.pico.instances.collection
 
 import org.pico.collection.fingertree._
 import org.pico.collection.{Consable, Measured, Reduce, Snocable}
-import org.pico.kind.λxb
+import org.pico.fp.Monoid
 import org.pico.syntax.all._
 
-import scalaz.Monoid
-
 package object fingertree {
-  implicit def ReduceFingerTree[V]: Reduce[λxb[FingerTree, V]#b] = new Reduce[λxb[FingerTree, V]#b] {
+  implicit def ReduceFingerTree[V]: Reduce[FingerTree[V, ?]] = new Reduce[FingerTree[V, ?]] {
     override def reduceR[A, B](f: (A, B) => B)(fa: FingerTree[V, A], z: B): B = {
       implicit val DConsable = Consable(ReduceDigit[V].reduceR(f))
       implicit val FConsable = Consable(ReduceFingerTree[V].reduceR(ReduceNode[V].reduceR(f)))
@@ -30,7 +28,7 @@ package object fingertree {
     }
   }
 
-  implicit def ReduceDigit[V]: Reduce[λxb[Digit, V]#b] = new Reduce[λxb[Digit, V]#b] {
+  implicit def ReduceDigit[V]: Reduce[Digit[V, ?]] = new Reduce[Digit[V, ?]] {
     override def reduceR[A, B](f: (A, B) => B)(fa: Digit[V, A], z: B): B = {
       implicit val BConsable: Consable[A, B] = Consable(f)
       fa match {
@@ -54,7 +52,7 @@ package object fingertree {
     }
   }
 
-  implicit def ReduceNode[V]: Reduce[λxb[Node, V]#b] = new Reduce[λxb[Node, V]#b] {
+  implicit def ReduceNode[V]: Reduce[Node[V, ?]] = new Reduce[Node[V, ?]] {
     override def reduceR[A, B](f: (A, B) => B)(fa: Node[V, A], z: B): B = {
       implicit val BConsable = Consable(f)
       fa match {

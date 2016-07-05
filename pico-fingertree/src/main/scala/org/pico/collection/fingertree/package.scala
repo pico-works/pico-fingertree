@@ -1,11 +1,10 @@
 package org.pico.collection
 
-import org.pico.kind.λxb
+import org.pico.fp.@@
 import org.pico.syntax.all._
-import org.pico.tag.{TaggerF, Tagger}
+import org.pico.tag.{Tagger, TaggerF}
 
 import scala.language.higherKinds
-import scalaz.@@
 
 package object fingertree {
   def !!!(): Nothing = throw new UnsupportedOperationException
@@ -14,7 +13,7 @@ package object fingertree {
   
   def asTree[F[_], V, A](fa: F[A])(implicit F: Reduce[F], M: Measured[V, A]): FingerTree[V, A] = F.reduceR[A, FingerTree[V, A]](_ +: _)(fa, Empty())
 
-  def asList[V, A](digit: Digit[V, A])(implicit F0: Reduce[λxb[Digit, V]#b]): List[A] = {
+  def asList[V, A](digit: Digit[V, A])(implicit F0: Reduce[Digit[V, ?]]): List[A] = {
     type FV[+A] = FingerTree[V, A]
     type DV[+A] = Digit[V, A]
     type NV[+A] = Node[V, A]

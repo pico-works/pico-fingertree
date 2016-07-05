@@ -1,7 +1,8 @@
 package org.pico
 
+import org.pico.fp.@@
+
 import scala.language.higherKinds
-import scalaz.@@
 
 package object tag {
   implicit class TaggedF1Ops[V, T, F[_]](val self: F[V @@ T]) extends AnyVal {

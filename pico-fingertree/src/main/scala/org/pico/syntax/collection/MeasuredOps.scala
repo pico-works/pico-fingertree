@@ -1,9 +1,9 @@
 package org.pico.syntax.collection
 
 import org.pico.collection.Measured
+import org.pico.fp.syntax.Ops
 
 import scala.language.higherKinds
-import scalaz.syntax.Ops
 
 trait MeasuredOps[V, A] extends Ops[A] {
   implicit def F: Measured[V, A]

@@ -1,12 +1,11 @@
 package org.pico.collection
 
 import org.pico.collection.fingertree.{FingerTree, _}
+import org.pico.fp.{@@, Monoid, Tag}
 import org.pico.instances.collection.fingertree._
 import org.pico.instances.std.seq._
 import org.pico.syntax.all._
 import org.pico.tag._
-
-import scalaz._
 
 trait VectorImplicits {
   implicit object MonoidSize extends Monoid[Int] {

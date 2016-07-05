@@ -2,9 +2,9 @@ package org.pico.syntax.collection
 
 import org.pico.collection.fingertree.{Empty, FingerTree}
 import org.pico.collection.{Measured, Reduce}
+import org.pico.fp.syntax.Ops
 
 import scala.language.higherKinds
-import scalaz.syntax.Ops
 
 trait ReduceOps[F[_], A] extends Ops[F[A]] {
   implicit def F: Reduce[F]
