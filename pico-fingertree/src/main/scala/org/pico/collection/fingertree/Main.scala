@@ -1,12 +1,10 @@
 package org.pico.collection.fingertree
 
 import org.pico.collection.Measured
+import org.pico.fp.Monoid
 import org.pico.instances.collection.fingertree._
 import org.pico.instances.std.list._
-import org.pico.kind.λxb
 import org.pico.syntax.all._
-
-import scalaz.Monoid
 
 object Main {
   implicit object MeasuredSize extends Measured[Int, Char] {
@@ -34,7 +32,7 @@ object Main {
     println(y)
     println(z)
     println(('t'::'h'::'i'::'s'::'i'::'s'::'n'::'o'::'t'::'a'::'t'::'r'::'e'::'e'::Nil).asTree[Int])
-    println(ToReduceOps[λxb[FingerTree, Int]#b, Char](y).asList)
+    println(ToReduceOps[FingerTree[Int, ?], Char](y).asList)
     println(ToMeasuredOps(y).measure)
     println(y.split(_ >= 5))
 //    val sentence = Vector('t', 'h', 'i', 's', 'i', 's', 'n', 'o', 't', 'a', 't', 'r', 'e', 'e')

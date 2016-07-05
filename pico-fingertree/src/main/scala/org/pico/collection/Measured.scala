@@ -1,7 +1,7 @@
 package org.pico.collection
 
-import scalaz.Monoid
-import scalaz.Scalaz._
+import org.pico.fp.Monoid
+import org.pico.fp.syntax._
 
 trait Measured[V, -A] {
   implicit def monoid: Monoid[V]

@@ -1,7 +1,8 @@
 package org.pico.tag
 
+import org.pico.fp.@@
+
 import scala.language.higherKinds
-import scalaz._
 
 class Tagger[U] {
   def apply[T](t : T): T @@ U = t.asInstanceOf[T @@ U]
